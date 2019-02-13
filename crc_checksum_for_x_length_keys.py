@@ -112,7 +112,7 @@ def calculate_xor_and_shift(key, data_word, remainder=0):
             # if all the XOR values are zeros, move to the right by the key bit length
             k = k + key_bit_length
         else:
-            # else move to the right by how many zeros were removed
+            # else move to the right by how many leading zeros there are in the XOR'ed list
             k = k + how_many_zeros_removed
 
         print('nth iteration:', k)
@@ -120,15 +120,11 @@ def calculate_xor_and_shift(key, data_word, remainder=0):
         print('xor result:', xor_result)
         print('------------------------')
 
-
-
     print('data word final answer:', data_word)
     print('data word without remainder', data_word[:-3])
     check_sum_remainder = data_word[length_of_data_word:]
     print('remainder:', check_sum_remainder)
     return check_sum_remainder
-
-
 
 
 if __name__ == "__main__":
@@ -138,7 +134,7 @@ if __name__ == "__main__":
     # key = 1011
     # original_data_word = 11010011101100
 
-    data_word = 11010011101100
+    data_word = 11010010101100
     key = 1011
 
     check_sum_remainder = calculate_xor_and_shift(key, data_word)
