@@ -1,5 +1,6 @@
-from utils import remove_leading_zeros
 from utils import int_to_list
+from utils import remove_leading_zeros
+
 
 def logical_xor(a, b):
     if a == b:
@@ -20,7 +21,6 @@ def binary_to_decimal(binary):
 
     return sum
 
-#print(binary_to_decimal(1011000))
 
 def find_exponent(num):
     # find the highest exponent for 2^x
