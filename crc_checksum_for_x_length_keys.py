@@ -1,5 +1,5 @@
 from utils import int_to_list
-from utils import remove_leading_zeros
+from utils import list_to_int
 
 
 def logical_xor(a, b):
@@ -102,7 +102,7 @@ def calculate_xor_and_shift(key, data_word, remainder=0):
             data_word[j] = output
             j = j + 1
 
-        xor1 = remove_leading_zeros(xor_result)
+        xor1 = list_to_int(xor_result)
         length_xor1 = len(xor_result)
         print('xor1:', xor1)
         how_many_zeros_removed = length_xor1 - len(int_to_list(xor1))
@@ -134,14 +134,14 @@ if __name__ == "__main__":
     # key = 1011
     # original_data_word = 11010011101100
 
-    data_word = 11010010101100
+    data_word = 11010011101100
     key = 1011
 
     check_sum_remainder = calculate_xor_and_shift(key, data_word)
     print('--------------------------------------------------------------------')
 
     rem = convert_list_to_number(check_sum_remainder)
-    final_remainder = calculate_xor_and_shift(key, data_word, remainder = rem)
+    final_remainder = calculate_xor_and_shift(key, data_word, remainder=rem)
 
     if final_remainder == [0] * len(final_remainder):
         print('Your checksum is correct!')
