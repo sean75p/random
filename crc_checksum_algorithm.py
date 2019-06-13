@@ -103,8 +103,10 @@ def calculate_xor_and_shift(key, data_word, remainder=0):
 def convert_list_to_number(value):
     """
     function to convert a list of numbers into a number
-    :param value:
-    :return: number:
+    leading zeros in the list will be omitted
+    for example [0, 0, 1, 0, 1] will return 101
+    :param value: list
+    :return: number: int
     """
     value.reverse()
     number = 0
