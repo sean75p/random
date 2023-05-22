@@ -30,10 +30,14 @@ class Deck(Card):
 deck_of_cards = Deck()
 
 print(deck_of_cards.new_deck)
-print('asdf1')
+print('-------------------------------------------')
 temp=deck_of_cards.new_card()
+temp2=deck_of_cards.new_card()
 print(temp)
+print(temp2)
+print('+++++++++')
 deck_of_cards.remove_card(temp)
+deck_of_cards.remove_card(temp2)
 print(deck_of_cards.new_deck)
 
 
@@ -43,20 +47,32 @@ def get_deck():
 
 
 
-# class People:
-#     def __init__(self, name, money):
-#         self.name = name
-#         self.money = 0
-#
-#     add_money =12
-#     subtract_money =13
-#
-# john = People('John',0)
-#
-# print(john.name);
-# print(john.money)
-#
-# print(john.add_money)
-# print(john.subtract_money)
-#
+class People:
+    def __init__(self, name, money):
+        self.name = name
+        self.money = 0
+
+    def add_money(self, temp):
+        self.money += temp
+
+    def subtract_money(self, temp):
+        self.money -= temp
+
+John = People(name='John', money=10)
+John.add_money(11)
+print(John.name)
+print(John.money)
+John.add_money(10)
+print(John.money)
+John.subtract_money(19)
+print(John.money)
+print(vars(John))
+
+
 # print(Card.card_face)
+# output shows:
+# ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+# print(Card().card_suit)
+# output shows:
+# this is the beginning of Card class instantiation
+# ['Clubs', 'Diamonds', 'Hearts', 'Spades']
