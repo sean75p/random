@@ -38,24 +38,28 @@ class People(Deck):
         self.money += temp
     def subtract_money(self, temp):
         self.money -= temp
-    def deal_player(self):
+
+    def deal_cards(self):
 
         self.card1 = Deck.new_deck[Deck.length_of_deck-1]
         self.card2 = Deck.new_deck[Deck.length_of_deck-3]
+        self.card3 = Deck.new_deck[Deck.length_of_deck - 2]
+        self.card4 = Deck.new_deck[Deck.length_of_deck - 4]
 
-        #find_of_position = str.find(self.card1, 'of')
+        #find_of_position = str.find(self.card1, ' of')
+        def card_to_integer(card):
+            cardxvalue = card[0:str.find(card, ' of')]
+            cardxvalue = self.calculate_value()[cardxvalue]
+            return cardxvalue
 
-        self.card1value = self.card1[0:str.find(self.card1, ' of')]
-        self.card2value = self.card2[0:str.find(self.card2, ' of')]
+        self.card1value = card_to_integer(self.card1)
+        self.card2value = card_to_integer(self.card2)
+        self.card3value = card_to_integer(self.card3)
+        self.card4value = card_to_integer(self.card4)
 
 
-    def deal_dealer(self):
 
-        self.card1 = Deck.new_deck[Deck.length_of_deck - 2]
-        self.card2 = Deck.new_deck[Deck.length_of_deck - 4]
 
-        self.card1value = self.card1[0:str.find(self.card1, ' of')]
-        self.card2value = self.card2[0:str.find(self.card2, ' of')]
 
 deck_of_cards = Deck()
 
@@ -67,23 +71,20 @@ print('+++++++++=================================================')
 
 deck_of_cards.shuffle_cards()
 print(deck_of_cards.new_deck)
-print(deck_of_cards.new_deck[0])
-
 
 print('++++++++++++++++++++++++++++++++++')
 Dealer = People(name='Dealer', money=0)
 Sean = People('Sean', 100)
 
-Sean.deal_player()
+Sean.deal_cards()
 print(Sean.name, 'has', Sean.card1,'and', Sean.card2)
 print(Sean.card1value, Sean.card2value)
-print('total value:', Sean.calculate_value()[Sean.card1value] + Sean.calculate_value()[Sean.card2value] )
+print('total value:', Sean.card1value + Sean.card2value)
 
-Dealer.deal_dealer()
-print('Dealer has', Dealer.card1,'and', Dealer.card2)
-print(Dealer.card1value, Dealer.card2value)
-print(Dealer.calculate_value()[Dealer.card1value], Dealer.calculate_value()[Dealer.card2value])
-print('total value:', Dealer.calculate_value()[Dealer.card1value] + Dealer.calculate_value()[Dealer.card2value] )
+Dealer.deal_cards()
+print('Dealer has', Dealer.card3,'and', Dealer.card4)
+print(Dealer.card3value, Dealer.card4value)
+print('total value:', Dealer.card3value + Dealer.card4value)
 
 #end
 
