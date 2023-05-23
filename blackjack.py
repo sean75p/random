@@ -85,7 +85,7 @@ print(Dealer.card1value, Dealer.card2value)
 print(Dealer.calculate_value()[Dealer.card1value], Dealer.calculate_value()[Dealer.card2value])
 print('total value:', Dealer.calculate_value()[Dealer.card1value] + Dealer.calculate_value()[Dealer.card2value] )
 
-#end
+#enda
 
 # print(Card.card_face)
 # output shows:
