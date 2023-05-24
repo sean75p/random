@@ -20,6 +20,8 @@ class Deck(Card):
         for j in Card.card_number_or_face:
             new_deck.append(j + ' of ' + i)
 
+    random.shuffle(new_deck)
+
     length_of_deck = len(new_deck)
 
     def new_card(self):
@@ -34,17 +36,18 @@ class People(Deck):
     def __init__(self, name="NoName", money=0):
         self.name = name
         self.money = money
+        self.card_list = []
     def add_money(self, temp):
         self.money += temp
     def subtract_money(self, temp):
         self.money -= temp
 
-    def deal_cards(self):
+    def deal_cards_for_two_players(self, newdeck):
 
-        self.card1 = Deck.new_deck[Deck.length_of_deck-1]
-        self.card2 = Deck.new_deck[Deck.length_of_deck-3]
-        self.card3 = Deck.new_deck[Deck.length_of_deck - 2]
-        self.card4 = Deck.new_deck[Deck.length_of_deck - 4]
+        self.card1 = Deck.new_deck[-1]
+        self.card2 = Deck.new_deck[-3]
+        self.card3 = Deck.new_deck[-2]
+        self.card4 = Deck.new_deck[-4]
 
         #find_of_position = str.find(self.card1, ' of')
         def card_to_integer(card):
@@ -57,9 +60,8 @@ class People(Deck):
         self.card3value = card_to_integer(self.card3)
         self.card4value = card_to_integer(self.card4)
 
-
-
-
+    def deal_one_card_from_top_of_deck(self, deck):
+        self.card_list.append(deck.pop(-1))
 
 deck_of_cards = Deck()
 
@@ -69,19 +71,29 @@ def get_deck():
 
 print('+++++++++=================================================')
 
-deck_of_cards.shuffle_cards()
+
 print(deck_of_cards.new_deck)
 
 print('++++++++++++++++++++++++++++++++++')
 Dealer = People(name='Dealer', money=0)
 Sean = People('Sean', 100)
+Sean.deal_one_card_from_top_of_deck(Sean.new_deck)
 
-Sean.deal_cards()
+Dealer.deal_one_card_from_top_of_deck(Sean.new_deck)
+
+Sean.deal_one_card_from_top_of_deck(Sean.new_deck)
+print("Sean's cards", Sean.card_list)
+Dealer.deal_one_card_from_top_of_deck(Sean.new_deck)
+print("Sean's cards", Dealer.card_list)
+
+
+Sean.deal_cards_for_two_players(newdeck=Sean.new_deck)
 print(Sean.name, 'has', Sean.card1,'and', Sean.card2)
 print(Sean.card1value, Sean.card2value)
 print('total value:', Sean.card1value + Sean.card2value)
 
-Dealer.deal_cards()
+Dealer.deal_cards_for_two_players(newdeck=Sean.new_deck)
+print(deck_of_cards.new_deck)
 print('Dealer has', Dealer.card3,'and', Dealer.card4)
 print(Dealer.card3value, Dealer.card4value)
 print('total value:', Dealer.card3value + Dealer.card4value)
