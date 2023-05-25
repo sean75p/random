@@ -49,16 +49,16 @@ class People(Deck):
         self.card3 = Deck.new_deck[-2]
         self.card4 = Deck.new_deck[-4]
 
-        #find_of_position = str.find(self.card1, ' of')
-        def card_to_integer(card):
-            cardxvalue = card[0:str.find(card, ' of')]
-            cardxvalue = self.calculate_value()[cardxvalue]
-            return cardxvalue
 
-        self.card1value = card_to_integer(self.card1)
-        self.card2value = card_to_integer(self.card2)
-        self.card3value = card_to_integer(self.card3)
-        self.card4value = card_to_integer(self.card4)
+    def card_to_integer(self, card):
+        # find_of_position = str.find(self.card_list, ' of')
+        temp = []
+        for i in card:
+            self.cardxvalue = i[0:str.find(i, ' of')]
+            self.cardxvalue = self.calculate_value()[self.cardxvalue]
+            temp.append(self.cardxvalue)
+
+        self.cardxvalue = temp
 
     def deal_one_card_from_top_of_deck(self, deck):
         self.card_list.append(deck.pop(-1))
@@ -69,7 +69,7 @@ def get_deck():
     """Return a deck of cards"""
     return[[rank, suit] for rank in ranks for suit in suits]
 
-print('+++++++++=================================================')
+print('=================================================')
 
 
 print(deck_of_cards.new_deck)
@@ -77,26 +77,21 @@ print(deck_of_cards.new_deck)
 print('++++++++++++++++++++++++++++++++++')
 Dealer = People(name='Dealer', money=0)
 Sean = People('Sean', 100)
+
 Sean.deal_one_card_from_top_of_deck(Sean.new_deck)
 
 Dealer.deal_one_card_from_top_of_deck(Sean.new_deck)
 
 Sean.deal_one_card_from_top_of_deck(Sean.new_deck)
+
+Dealer.deal_one_card_from_top_of_deck(Sean.new_deck)
+
 print("Sean's cards", Sean.card_list)
-Dealer.deal_one_card_from_top_of_deck(Sean.new_deck)
-print("Sean's cards", Dealer.card_list)
-
-
-Sean.deal_cards_for_two_players(newdeck=Sean.new_deck)
-print(Sean.name, 'has', Sean.card1,'and', Sean.card2)
-print(Sean.card1value, Sean.card2value)
-print('total value:', Sean.card1value + Sean.card2value)
-
-Dealer.deal_cards_for_two_players(newdeck=Sean.new_deck)
-print(deck_of_cards.new_deck)
-print('Dealer has', Dealer.card3,'and', Dealer.card4)
-print(Dealer.card3value, Dealer.card4value)
-print('total value:', Dealer.card3value + Dealer.card4value)
+Sean.card_to_integer(Sean.card_list)
+print(Sean.cardxvalue, 'total', sum(Sean.cardxvalue))
+print("Dealer's cards", Dealer.card_list)
+Dealer.card_to_integer(Dealer.card_list)
+print(Dealer.cardxvalue, 'total', sum(Dealer.cardxvalue))
 
 #end
 
