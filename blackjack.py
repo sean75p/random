@@ -93,6 +93,7 @@ print("Dealer's cards", Dealer.card_list)
 Dealer.card_to_integer(Dealer.card_list)
 print(Dealer.cardxvalue, 'total', sum(Dealer.cardxvalue))
 
+
 #end
 
 # print(Card.card_face)
